@@ -87,8 +87,8 @@ var Defense : int :
 		%Defense.text = str(value)
 
 func get_sp():
-	sp_player += 100
-	resource_bar.value += 100
+	sp_player += 20
+	resource_bar.value += 20
 func _ready():
 	XP_Table_Data = get_xp_data()
 	Strength = global.strength
