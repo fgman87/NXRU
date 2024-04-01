@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dllauck7ldon4"]
+
+[ext_resource type="Texture2D" uid="uid://drua6hq3ga0u8" path="res://art/lightning.png" id="1_vtaly"]
+[ext_resource type="Script" path="res://Lightning.gd" id="2_q8iul"]
+[ext_resource type="Texture2D" uid="uid://b2cimn3npe7yb" path="res://art/inventory-background(1).png" id="3_yedga"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tncev"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmj4b"]
+
+[node name="Lightning" type="Sprite2D"]
+texture_repeat = 2
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_vtaly")
+offset = Vector2(0, 500)
+region_enabled = true
+region_rect = Rect2(668, 0, 76, 0)
+script = ExtResource("2_q8iul")
+
+[node name="Detection" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_tncev")
+disabled = true
+
+[node name="Collision" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_hmj4b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("3_yedga")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

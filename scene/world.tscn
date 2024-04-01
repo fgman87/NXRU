@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c038o3ld76ov"]
+
+[ext_resource type="PackedScene" uid="uid://3k3tmaon0stt" path="res://art/player.tscn" id="1_h24y6"]
+[ext_resource type="Script" path="res://scene/world.gd" id="1_wkh8y"]
+[ext_resource type="PackedScene" uid="uid://bfmcslplg8d1y" path="res://utility/enemy_spawner.tscn" id="3_ewmyh"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_wkh8y")
+
+[node name="player" parent="." instance=ExtResource("1_h24y6")]
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+zoom = Vector2(2, 2)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_ewmyh")]

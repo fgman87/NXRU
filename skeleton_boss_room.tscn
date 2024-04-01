@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr0xwbawwnf8n"]
+
+[ext_resource type="PackedScene" uid="uid://dvt735kdvvjhs" path="res://script/skeleton_boss.tscn" id="1_7oo6w"]
+[ext_resource type="PackedScene" uid="uid://bix7iu4j28wki" path="res://player_2.tscn" id="1_f45kf"]
+
+[node name="SkeletonBossRoom" type="Node2D"]
+position = Vector2(610, 277)
+
+[node name="SkeletonBoss" parent="." instance=ExtResource("1_7oo6w")]
+position = Vector2(-284, -26)
+
+[node name="player_2" parent="." instance=ExtResource("1_f45kf")]
+position = Vector2(-550, -198)

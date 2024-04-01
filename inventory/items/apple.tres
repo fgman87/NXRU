@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dgep77jxo8fa4"]
+
+[ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_macu3"]
+[ext_resource type="Texture2D" uid="uid://cxwaii4qrlvdm" path="res://art/apple-icon(1).png" id="2_e25r1"]
+
+[resource]
+script = ExtResource("1_macu3")
+name = "apple"
+texture = ExtResource("2_e25r1")
