@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://damdoys6bdrkv"]
+
+[ext_resource type="Texture2D" uid="uid://bmhwidwgw05y4" path="res://art/FXpack13/Effect1/1.png" id="1_dnolr"]
+[ext_resource type="Script" path="res://utility/spell_button.gd" id="2_83ymn"]
+[ext_resource type="Texture2D" uid="uid://birwwkxoa50v6" path="res://icon.svg" id="3_5l3ca"]
+
+[node name="SpellButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_dnolr")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_83ymn")
+
+[node name="Cooldown" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.320001, 0.314698)
+step = 0.01
+fill_mode = 5
+texture_progress = ExtResource("3_5l3ca")
+tint_progress = Color(0.85098, 0, 0.0313726, 1)
+
+[node name="Key" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "4
+"
+vertical_alignment = 2
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "0.0
+"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -12,6 +12,6 @@ script = ExtResource("1_wkh8y")
 [node name="Camera2D2" type="Camera2D" parent="."]
 light_mask = 3
 visibility_layer = 3
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_ewmyh")]

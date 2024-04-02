@@ -1,8 +1,9 @@
 extends Area2D
 
-var speed = 300
+var speed = 200
 
 func _ready():
+	$AnimatedSprite2D.play("default")
 	set_as_top_level(true)
 
 func _process(delta):

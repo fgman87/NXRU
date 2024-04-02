@@ -189,26 +189,29 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("left_mouse") and bow_equipped and bow_cooldown:
 		speed = 0
 		bow_cooldown = false
+		is_attacking = true
+		await get_tree().create_timer(0.2).timeout
 		var bullet = bullet_node.instantiate()
 		bullet.rotation = $Marker2D.rotation
 		bullet.global_position = $Marker2D.global_position
 		add_child(bullet)
-		is_attacking = true
 		await get_tree().create_timer(0.3).timeout
 		is_attacking = false
 		speed = 100
 		bow_cooldown = true
-		
-	if Input.is_action_just_pressed("left_mouse") and global.fire_equipped and global.fire_cooldown and sp_player >= 100:
+		#change to button soonish?!?!? idk read more
+
+	if Input.is_action_just_pressed("fireball"):#and sp_player >= 100:
 		speed = 0
 		resource_bar.value = 0
 		print(sp_player)
 		global.fire_cooldown = false
+		is_attacking = true
+		await get_tree().create_timer(0.3).timeout
 		var fire_instance = fireball.instantiate()
 		fire_instance.rotation = $Marker2D.rotation
 		fire_instance.global_position = $Marker2D.global_position
 		add_child(fire_instance)
-		is_attacking = true
 		await get_tree().create_timer(0.3).timeout
 		is_attacking = false
 		speed = 100
