@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=3 uid="uid://rd7tcei7nm8j"]
 
 [ext_resource type="Script" path="res://minion.gd" id="1_t7g3y"]
-[ext_resource type="Texture2D" uid="uid://52ll6ae8sgp6" path="res://art/png/summonDeath.png" id="2_g0scv"]
-[ext_resource type="Texture2D" uid="uid://be7w7v688d32i" path="res://art/png/summonAppear.png" id="2_mthgs"]
-[ext_resource type="Texture2D" uid="uid://bpj8tojlgauaw" path="res://art/png/summonIdle.png" id="3_uej40"]
+[ext_resource type="Texture2D" uid="uid://52ll6ae8sgp6" path="res://art/FXpack13/Effect1/png/summonDeath.png" id="2_g0scv"]
+[ext_resource type="Texture2D" uid="uid://be7w7v688d32i" path="res://art/FXpack13/Effect1/png/summonAppear.png" id="2_mthgs"]
+[ext_resource type="Texture2D" uid="uid://bpj8tojlgauaw" path="res://art/FXpack13/Effect1/png/summonIdle.png" id="3_uej40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ums81"]
 atlas = ExtResource("2_g0scv")

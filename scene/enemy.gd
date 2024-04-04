@@ -55,12 +55,25 @@ func _on_enemy_hitbox_body_exited(body):
 
 func take_fire_damage():
 	health -= 30
+	print(health)
 	await get_tree().create_timer(1).timeout
 	health -= 5
 	await get_tree().create_timer(1).timeout
 	health -= 5
 	await get_tree().create_timer(1).timeout
 	health -= 12
+	print(health)
+	if health <= 0:
+		player.current_xp += 100 + (100 * (global.current_level_num * .07))
+		global.player_xp += 100 + (100 * (global.current_level_num * .07))
+		global.total_xp += 100 + (100 * (global.current_level_num * .07))
+		global.get_mob_count()
+		print(global.enemy_count)
+		self.queue_free()
+	player.get_sp()
+	print("Resource: ",player.sp_player)
+	#global.popup(global_position)
+	can_take_damage = false
 
 func _on_take_damage_cooldown_timeout():
 	can_take_damage = true

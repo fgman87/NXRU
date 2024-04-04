@@ -1,6 +1,7 @@
 extends Node
 
 #equip stuff
+var lastshot = null
 var bow_equipped = false
 var bow_cooldown = true
 var sword_equipped = false
@@ -30,6 +31,10 @@ var enemy_count = 0
 var player_current_attack = false
 var total_xp = 0
 #end of player stuff
+#skill increase
+var pyro = 1
+var archer = 1
+
 
 func get_mob_count():
 	enemy_count += 1

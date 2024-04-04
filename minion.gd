@@ -25,9 +25,11 @@ func take_damage():
 
 func take_fire_damage():
 	health -= 30
+	print("health")
 	await get_tree().create_timer(1).timeout
 	health -= 5
 	await get_tree().create_timer(1).timeout
 	health -= 5
 	await get_tree().create_timer(1).timeout
 	health -= 12
+	print("health")

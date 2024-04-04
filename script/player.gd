@@ -161,27 +161,39 @@ func _physics_process(delta):
 			global.lightning_equipped = false
 			global.fire_equipped = false
 			
-	if Input.is_action_just_pressed("lightning"):
-		if global.lightning_equipped:
-				global.lightning_equipped = false
-				print("lightning uneq")
-		else:
-			global.lightning_equipped = true
-			print("lightning eq")
-			sword_equipped = false
-			bow_equipped = false
-			global.fire_equipped = false
+	if Input.is_action_just_pressed("multishot"):
+		global.lastshot = "poison"
+		speed = 0
+		bow_cooldown = false
+		is_attacking = true
+		await get_tree().create_timer(0.2).timeout
+		var fire = fireball.instantiate()
+		print("pew")
+		fire.rotation = $Marker2D.rotation
+		fire.global_position = $Marker2D.global_position
+		add_child(fire)
+		await get_tree().create_timer(0.3).timeout
+		is_attacking = false
+		speed = 100
+		bow_cooldown = true
+		#change to button soonish?!?!? idk read more
 			
-	if Input.is_action_just_pressed("fire"):
-		if global.fire_equipped:
-				global.fire_equipped = false
-				print("fire uneq")
-		else:
-			global.fire_equipped = true
-			print("fire eq")
-			sword_equipped = false
-			bow_equipped = false
-			global.lightning_equipped = false
+	if Input.is_action_just_pressed("singleshot"):
+		global.lastshot = "ice"
+		speed = 0
+		bow_cooldown = false
+		is_attacking = true
+		await get_tree().create_timer(0.2).timeout
+		var fire = fireball.instantiate()
+		print("pew")
+		fire.rotation = $Marker2D.rotation
+		fire.global_position = $Marker2D.global_position
+		add_child(fire)
+		await get_tree().create_timer(0.3).timeout
+		is_attacking = false
+		speed = 100
+		bow_cooldown = true
+		#change to button soonish?!?!? idk read more
 			
 	var mouse_pos = get_global_mouse_position()
 	$Marker2D.look_at(mouse_pos)
@@ -190,28 +202,31 @@ func _physics_process(delta):
 		speed = 0
 		bow_cooldown = false
 		is_attacking = true
+		global.lastshot = "arrow"
 		await get_tree().create_timer(0.2).timeout
-		var bullet = bullet_node.instantiate()
-		bullet.rotation = $Marker2D.rotation
-		bullet.global_position = $Marker2D.global_position
-		add_child(bullet)
+		var fire = fireball.instantiate()
+		print("pew")
+		fire.rotation = $Marker2D.rotation
+		fire.global_position = $Marker2D.global_position
+		add_child(fire)
 		await get_tree().create_timer(0.3).timeout
 		is_attacking = false
 		speed = 100
 		bow_cooldown = true
 		#change to button soonish?!?!? idk read more
 
-	if Input.is_action_just_pressed("fireball"):#and sp_player >= 100:
+	if Input.is_action_just_pressed("fireball") and sp_player >=0  and global.fire_cooldown:
 		speed = 0
 		resource_bar.value = 0
-		print(sp_player)
-		global.fire_cooldown = false
 		is_attacking = true
-		await get_tree().create_timer(0.3).timeout
-		var fire_instance = fireball.instantiate()
-		fire_instance.rotation = $Marker2D.rotation
-		fire_instance.global_position = $Marker2D.global_position
-		add_child(fire_instance)
+		global.lastshot = "fire"
+		global.fire_cooldown = false
+		await get_tree().create_timer(0.2).timeout
+		var fire = fireball.instantiate()
+		print("pew")
+		fire.rotation = $Marker2D.rotation
+		fire.global_position = $Marker2D.global_position
+		add_child(fire)
 		await get_tree().create_timer(0.3).timeout
 		is_attacking = false
 		speed = 100
