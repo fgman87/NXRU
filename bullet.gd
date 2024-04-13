@@ -11,6 +11,7 @@ func _process(delta):
  
 func _on_body_entered(body):
 	body.take_damage()
+	body.popup()
 	queue_free()
  
  

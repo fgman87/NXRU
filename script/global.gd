@@ -30,6 +30,7 @@ var defense = 5
 var enemy_count = 0
 var player_current_attack = false
 var total_xp = 0
+var player_hit
 #end of player stuff
 #skill increase
 var pyro = 1

@@ -6,6 +6,9 @@ func enter():
  
 func attack(move = "1"):
 	animation_player.play("attack_" + move)
+	await get_tree().create_timer(1).timeout
+	if owner.direction.length() < 40:
+		owner.player_hit()
 	await animation_player.animation_finished
  
  

@@ -256,7 +256,7 @@ script = ExtResource("1_ght53")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_65j4n")
 animation = &"Fire"
-frame_progress = 0.044349
+frame_progress = 0.262962
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

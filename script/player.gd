@@ -179,7 +179,7 @@ func _physics_process(delta):
 		#change to button soonish?!?!? idk read more
 			
 	if Input.is_action_just_pressed("singleshot"):
-		global.lastshot = "ice"
+		global.lastshot = "fire2"
 		speed = 0
 		bow_cooldown = false
 		is_attacking = true
@@ -194,7 +194,7 @@ func _physics_process(delta):
 		speed = 100
 		bow_cooldown = true
 		#change to button soonish?!?!? idk read more
-			
+
 	var mouse_pos = get_global_mouse_position()
 	$Marker2D.look_at(mouse_pos)
 	
@@ -358,7 +358,6 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		$"attack-cooldown".start()
 		print(HP)
-
 
 func _on_attackcooldown_timeout():
 	enemy_attack_cooldown = true

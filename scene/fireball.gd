@@ -14,6 +14,10 @@ func get_anim():
 		$AnimatedSprite2D.play("fire")
 		current_attack = "fire"
 		global.lastshot = null
+	if global.lastshot == "fire2":
+		$AnimatedSprite2D.play("fire2")
+		current_attack = "fire2"
+		global.lastshot = null
 	if global.lastshot == "arrow":
 		$AnimatedSprite2D.play("arrow")
 		global.lastshot = null
@@ -37,7 +41,10 @@ func _on_body_entered(body):
 		body.take_damage()
 		queue_free()
 		global.archer += 1
- 
+	if current_attack == "fire2":
+		body.take_fire2_damage()
+		queue_free()
+		global.pyro += 1
  
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

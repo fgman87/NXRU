@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed = 400 + (400 * (global.current_level_num * .4))
 var health = 35 + (35 * (global.current_level_num * .1))
 var can_take_damage = true
- 
+var arrow_dam = global.player_arrowDam
 @onready var player = get_parent().find_child("player")
 @onready var animation = $AnimatedSprite2D
 func _on_player_added(player_node):
@@ -19,6 +19,8 @@ func _physics_process(_delta):
 
 func take_damage():
 	health -= global.player_arrowDam
+	$Label.text  = str(arrow_dam)
+	$AnimationPlayer.play("pop")
 	if health <= 0:
 		player.current_xp += 100 + (100 * (global.current_level_num * .07))
 		global.player_xp += 100 + (100 * (global.current_level_num * .07))
@@ -31,7 +33,20 @@ func take_damage():
 	#global.popup(global_position)
 	can_take_damage = false
 		
-
+func take_fire2_damage():
+	health -= 40
+	print(health)
+	if health <= 0:
+		player.current_xp += 100 + (100 * (global.current_level_num * .07))
+		global.player_xp += 100 + (100 * (global.current_level_num * .07))
+		global.total_xp += 100 + (100 * (global.current_level_num * .07))
+		global.get_mob_count()
+		print(global.enemy_count)
+		self.queue_free()
+	player.get_sp()
+	print("Resource: ",player.sp_player)
+	#global.popup(global_position)
+	can_take_damage = false
 func _ready():
 	start_chasing_player()
 
