@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://3k3tmaon0stt"]
+[gd_scene load_steps=69 format=3 uid="uid://3k3tmaon0stt"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_h5oao"]
 [ext_resource type="PackedScene" uid="uid://dwntx8jsc5cwp" path="res://bullet.tscn" id="2_8wg5d"]
@@ -538,6 +538,67 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_46nj5"]
 radius = 14.0
 
+[sub_resource type="Animation" id="Animation_x3kjv"]
+resource_name = "pop"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.75, 0.576), Vector2(1.5, 0.576), Vector2(1.5, 0.576)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r2ent"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 0.576)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uio06"]
+_data = {
+"RESET": SubResource("Animation_r2ent"),
+"pop": SubResource("Animation_x3kjv")
+}
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, 1)
 script = ExtResource("1_h5oao")
@@ -567,8 +628,7 @@ value = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n6w5m")
-animation = &"w-walk"
-frame_progress = 0.465781
+animation = &"death"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -733,6 +793,21 @@ offset_bottom = 40.0
 
 [node name="SpellButton" parent="UI/SkillBar" instance=ExtResource("6_3m362")]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = -7.0
+scale = Vector2(1.5, 0.576)
+pivot_offset = Vector2(20, 11.6)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uio06")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]

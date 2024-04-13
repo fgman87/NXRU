@@ -5,7 +5,7 @@ const MAX_LEVEL = 10
 @onready var progress_bar = $ProgressBar
 @onready var resource_bar = $Resource
 var XP_Table_Data = {}
-
+var enemydam = 0
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var player_alive = true
@@ -15,8 +15,6 @@ var dashing = false
 var dash_cd = true
 var player_state
 var sp_player = 0
-var dex = 20
-var arrowDam = 35
 @export var inv: Inv
 
 var bow_equipped = false
@@ -27,7 +25,7 @@ var sword_cooldown = true
 var fireball = preload("res://scene/fireball.tscn")
 var arrow = preload("res://scene/arrow.tscn")
 var mouse_loc_from_player = null
-
+var is_dead = false
 var Level : int = 1:
 	set(value):
 		Level = value
@@ -49,6 +47,7 @@ var current_xp = global.player_xp:
 			Defense += 1
 			current_xp -= max_xp
 			global.player_xp -= max_xp
+			global.player_arrowDam = 10 + floor(.3 * global.agility)
 		elif Level == MAX_LEVEL:
 			current_xp = 0
 			
@@ -115,17 +114,12 @@ func get_xp_data() -> Dictionary:
 	
 func get_max_xp_at(Level):
 	return XP_Table_Data[str(Level)]["need"]
-
-
+	
 func _physics_process(delta):
+	if is_dead:
+		$AnimatedSprite2D.play("death")
 	mouse_loc_from_player = get_global_mouse_position() - self.position
 	enemy_attack()
-	if HP <= 0:
-		player_alive = false # add end screen and death animation
-		HP = 0
-		speed = 0
-		print("player has been killed")
-	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	if direction.x == 0 and direction.y  == 0:
@@ -333,6 +327,7 @@ func play_anim(dir):
 			$AnimatedSprite2D.play("sw-sattack")
 		if mouse_loc_from_player.x <= -25 and mouse_loc_from_player.y <= -25:
 			$AnimatedSprite2D.play("nw-sattack")
+			
 
 func player():
 	pass
@@ -353,10 +348,16 @@ func _on_player_hitbox_body_exited(body):
 		
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
-		HP = HP - 20 + (20 *global.current_level_num * .2)
+		enemydam = 20 + (20 *global.current_level_num * .2)
+		HP = HP - enemydam
+		$Label.text  = str(enemydam)
+		$AnimationPlayer.play("pop")
 		progress_bar.value = HP
 		enemy_attack_cooldown = false
 		$"attack-cooldown".start()
+		if HP <= 0:
+			is_dead = true
+			set_physics_process(false)
 		print(HP)
 
 func _on_attackcooldown_timeout():

@@ -20,7 +20,6 @@ var current_scene = 0
 #end ofscene stuff
 #player stuff
 var agility = 5
-var player_arrowDam = 10 + floor(.3 * agility)
 var player_xp = 0
 var player_HP = 100
 var player_level = 1
@@ -31,6 +30,7 @@ var enemy_count = 0
 var player_current_attack = false
 var total_xp = 0
 var player_hit
+var player_arrowDam = 10 + floor(.3 * agility)
 #end of player stuff
 #skill increase
 var pyro = 1

@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-var speed = 400 + (400 * (global.current_level_num * .4))
-var health = 35 + (35 * (global.current_level_num * .1))
+var speed = 400 + floor(400 * (global.current_level_num * .4))
+var health = 35 + floor(35 * (global.current_level_num * .1))
 var can_take_damage = true
-var arrow_dam = global.player_arrowDam
 @onready var player = get_parent().find_child("player")
 @onready var animation = $AnimatedSprite2D
 func _on_player_added(player_node):
@@ -18,8 +17,10 @@ func _physics_process(_delta):
 	$AnimatedSprite2D.play("walk")
 
 func take_damage():
-	health -= global.player_arrowDam
-	$Label.text  = str(arrow_dam)
+	var arrow_dam = global.player_arrowDam
+	health -= arrow_dam
+	print("Enemy health: ", health, " damage taken: ", arrow_dam)
+	$Label.text  = str(global.player_arrowDam)
 	$AnimationPlayer.play("pop")
 	if health <= 0:
 		player.current_xp += 100 + (100 * (global.current_level_num * .07))
