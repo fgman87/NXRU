@@ -10,7 +10,7 @@ var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var player_alive = true
 var is_attacking = false
-var speed = 500
+var speed = 200
 var dashing = false
 var dash_cd = true
 var player_state
@@ -116,8 +116,7 @@ func get_max_xp_at(Level):
 	return XP_Table_Data[str(Level)]["need"]
 	
 func _physics_process(delta):
-	if is_dead:
-		$AnimatedSprite2D.play("death")
+		
 	mouse_loc_from_player = get_global_mouse_position() - self.position
 	enemy_attack()
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -241,14 +240,19 @@ func _physics_process(delta):
 	play_anim(direction)
 	
 func play_anim(dir):
+	
+	if is_dead:
+		if player_state == "dead":
+			playdead()
+	
 	if dashing:
-		speed = 300
+		speed = 340
 		await get_tree().create_timer(0.3).timeout
-		speed = 100
+		speed = 200
 		dashing = false
 		
 	if !is_attacking:
-		if player_state == "idle":
+		if player_state == "idle" and !is_dead:
 			$AnimatedSprite2D.play('idle')
 		if player_state == "walking" and !is_attacking:
 			if dir.y == -1:
@@ -329,6 +333,11 @@ func play_anim(dir):
 			$AnimatedSprite2D.play("nw-sattack")
 			
 
+func playdead():
+	if player_state == "dead":
+		set_physics_process(false)
+		$AnimatedSprite2D.play('death')
+
 func player():
 	pass
 
@@ -347,7 +356,7 @@ func _on_player_hitbox_body_exited(body):
 		enemy_inattack_range = false
 		
 func enemy_attack():
-	if enemy_inattack_range and enemy_attack_cooldown:
+	if enemy_inattack_range and enemy_attack_cooldown and !is_dead:
 		enemydam = 20 + (20 *global.current_level_num * .2)
 		HP = HP - enemydam
 		$Label.text  = str(enemydam)
@@ -356,9 +365,15 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		$"attack-cooldown".start()
 		if HP <= 0:
+			player_state = "dead"
 			is_dead = true
-			set_physics_process(false)
+			playdead()
+			print("you ded")
 		print(HP)
+
+func sk_boss_attack():
+		$Label.text  = str(global.bossdam)
+		$AnimationPlayer.play("pop")
 
 func _on_attackcooldown_timeout():
 	enemy_attack_cooldown = true

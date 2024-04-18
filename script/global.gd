@@ -35,7 +35,7 @@ var player_arrowDam = 10 + floor(.3 * agility)
 #skill increase
 var pyro = 1
 var archer = 1
-
+var bossdam = 40
 
 func get_mob_count():
 	enemy_count += 1

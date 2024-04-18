@@ -16,6 +16,9 @@ func combo():
 	var move_set = ["1","1","2"]
 	for i in move_set:
 		await attack(i)
+		if owner.direction.length() < 40:
+			owner.player_hit()
+			await animation_player.animation_finished
  
 	combo()
  

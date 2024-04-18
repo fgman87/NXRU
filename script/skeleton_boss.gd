@@ -6,7 +6,11 @@ extends CharacterBody2D
 var max_health = 0
 var current_health = 0
 var direction : Vector2
+var bossdam = global.bossdam
 func _ready():
+	global.bossdam += global.bossdam * floor(global.current_level_num * .01)
+	bossdam = global.bossdam
+	print(bossdam, " ", global.bossdam)
 	set_physics_process(false)
 	max_health = 100 + (100 * (global.current_level_num * .1))
 	progress_bar.max_value = max_health
@@ -27,8 +31,13 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
  
 func player_hit():
-	player.HP -= 10
-	print(player.HP)
+	if !player.is_dead:
+		player.HP -= bossdam
+		player.sk_boss_attack()
+	if player.HP <= 0:
+		player.player_state = "dead"
+		player.is_dead = true
+		player.playdead()
 
 func take_damage():
 	current_health -= global.player_arrowDam

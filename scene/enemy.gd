@@ -35,7 +35,11 @@ func take_damage():
 	can_take_damage = false
 		
 func take_fire2_damage():
+	var firedam = 40
+	var firedot = 5
 	health -= 40
+	$Label.text  = str(global.player_arrowDam)
+	$AnimationPlayer.play("pop")
 	print(health)
 	if health <= 0:
 		player.current_xp += 100 + (100 * (global.current_level_num * .07))
@@ -70,14 +74,22 @@ func _on_enemy_hitbox_body_exited(body):
 
 
 func take_fire_damage():
-	health -= 30
+	var firedam = 30
+	var firedot = 2
+	health -= firedam
+	$Label.text  = str(firedam)
+	$AnimationPlayer.play("pop")
 	print(health)
-	await get_tree().create_timer(1).timeout
-	health -= 5
-	await get_tree().create_timer(1).timeout
-	health -= 5
-	await get_tree().create_timer(1).timeout
-	health -= 12
+	await get_tree().create_timer(2).timeout
+	$Label.text  = str(firedot)
+	health -= firedot
+	$AnimationPlayer.play("pop")
+	await get_tree().create_timer(2).timeout
+	health -= firedot
+	$AnimationPlayer.play("pop")
+	await get_tree().create_timer(2).timeout
+	health -= firedot
+	$AnimationPlayer.play("pop")
 	print(health)
 	if health <= 0:
 		player.current_xp += 100 + (100 * (global.current_level_num * .07))
