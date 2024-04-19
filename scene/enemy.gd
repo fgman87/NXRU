@@ -19,15 +19,22 @@ func _physics_process(_delta):
 func take_damage():
 	var arrow_dam = global.player_arrowDam
 	health -= arrow_dam
-	print("Enemy health: ", health, " damage taken: ", arrow_dam)
+	set_physics_process(false)
+	$AnimatedSprite2D.play("damage")
 	$Label.text  = str(global.player_arrowDam)
 	$AnimationPlayer.play("pop")
+	await $AnimatedSprite2D.animation_finished
+	set_physics_process(true)
+	print("Enemy health: ", health, " damage taken: ", arrow_dam)
 	if health <= 0:
+		set_physics_process(false)
+		$AnimatedSprite2D.play("death")
 		player.current_xp += 100 + (100 * (global.current_level_num * .07))
 		global.player_xp += 100 + (100 * (global.current_level_num * .07))
 		global.total_xp += 100 + (100 * (global.current_level_num * .07))
 		global.get_mob_count()
 		print(global.enemy_count)
+		await get_tree().create_timer(1.2).timeout
 		self.queue_free()
 	player.get_sp()
 	print("Resource: ",player.sp_player)
@@ -45,6 +52,7 @@ func take_fire2_damage():
 		player.current_xp += 100 + (100 * (global.current_level_num * .07))
 		global.player_xp += 100 + (100 * (global.current_level_num * .07))
 		global.total_xp += 100 + (100 * (global.current_level_num * .07))
+		global.fire_lvl = 2
 		global.get_mob_count()
 		print(global.enemy_count)
 		self.queue_free()

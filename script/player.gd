@@ -171,8 +171,8 @@ func _physics_process(delta):
 		bow_cooldown = true
 		#change to button soonish?!?!? idk read more
 			
-	if Input.is_action_just_pressed("singleshot"):
-		global.lastshot = "fire2"
+	if Input.is_action_just_pressed("fireball") and sp_player >=0 and global.fire_lvl == 2:
+		global.lastshot = "fire"
 		speed = 0
 		bow_cooldown = false
 		is_attacking = true
@@ -208,11 +208,11 @@ func _physics_process(delta):
 		bow_cooldown = true
 		#change to button soonish?!?!? idk read more
 
-	if Input.is_action_just_pressed("fireball") and sp_player >=0  and global.fire_cooldown:
+	if Input.is_action_just_pressed("fireball") and sp_player >=0  and global.fire_cooldown and global.fire_lvl == 1:
 		speed = 0
 		resource_bar.value = 0
 		is_attacking = true
-		global.lastshot = "fire"
+		global.lastshot = "fire2"
 		global.fire_cooldown = false
 		await get_tree().create_timer(0.2).timeout
 		var fire = fireball.instantiate()

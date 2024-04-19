@@ -14,7 +14,7 @@ var arrow_hit = false
 var fire_hit = false
 #end of equip stuff
 #scene stuff
-var mobs_needed = 1
+var mobs_needed = 5
 var current_level_num = 1
 var current_scene = 0
 #end ofscene stuff
@@ -33,7 +33,7 @@ var player_hit
 var player_arrowDam = 10 + floor(.3 * agility)
 #end of player stuff
 #skill increase
-var pyro = 1
+var fire_lvl = 1
 var archer = 1
 var bossdam = 40
 
@@ -49,7 +49,7 @@ func get_mob_count():
 		enemy_count = 0
 
 func get_mobs():
-	mobs_needed = current_level_num * 1
+	mobs_needed += current_level_num * 1
 
 func change_scene():
 	get_mobs()
