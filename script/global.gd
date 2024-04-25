@@ -31,6 +31,7 @@ var player_current_attack = false
 var total_xp = 0
 var player_hit
 var player_arrowDam = 10 + floor(.3 * agility)
+var bow_shots = 0
 #end of player stuff
 #skill increase
 var fire_lvl = 1

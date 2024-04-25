@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var bullet_node: PackedScene
 const XP_DATABASE = "res://Utility/Database.json"
 const MAX_LEVEL = 10
+
 @onready var progress_bar = $ProgressBar
 @onready var resource_bar = $Resource
 var XP_Table_Data = {}

@@ -18,10 +18,17 @@ func _physics_process(_delta):
 
 func take_damage():
 	var arrow_dam = global.player_arrowDam
+	var shots = global.bow_shots
+	if shots < 3:
+		arrow_dam = global.player_arrowDam
+		global.bow_shots += 1
+	if shots >= 3: 
+		arrow_dam = global.player_arrowDam + floor(health * 2)
+		global.bow_shots = 0
 	health -= arrow_dam
 	set_physics_process(false)
 	$AnimatedSprite2D.play("damage")
-	$Label.text  = str(global.player_arrowDam)
+	$Label.text  = str(arrow_dam)
 	$AnimationPlayer.play("pop")
 	await $AnimatedSprite2D.animation_finished
 	set_physics_process(true)

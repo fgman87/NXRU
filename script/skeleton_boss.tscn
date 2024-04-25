@@ -842,4 +842,6 @@ minion_node = ExtResource("13_qk0gx")
 position = Vector2(-1, 2)
 script = ExtResource("12_48bj6")
 
+[node name="Hitbox" type="Area2D" parent="."]
+
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

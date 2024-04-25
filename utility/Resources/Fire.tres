@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Damage" load_steps=2 format=3 uid="uid://drh4i2kigewxf"]
+
+[ext_resource type="Script" path="res://utility/Resources/Damage.gd" id="1_akpns"]
+
+[resource]
+script = ExtResource("1_akpns")
+amount = 150.0
+type = "Fire"
