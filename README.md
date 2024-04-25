@@ -11,9 +11,10 @@ Movement:
 Combat:
     1: Equip Bow
     2: Equip Sword
-    3: Equip Lightning (nothing atm)
-    4: Equip Fire (fireball) requires 100 resource
-    Left Mouse Button: Attack
+    3: fires a purple bolt
+    4: nothing atm
+    LMB: Attack
+    RMB: Fire (after 1st KB on enemy changes to have dot)
 
 
 Gameplay Loop:
