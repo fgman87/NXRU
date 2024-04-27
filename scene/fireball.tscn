@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scene/fireball.gd" id="1_vfjg4"]
 [ext_resource type="Texture2D" uid="uid://dgm0m6veoqe0l" path="res://art/FXpack13/Effect1/Effect2/1.png" id="2_6n048"]
-[ext_resource type="Texture2D" uid="uid://cso7vmmxv0jvc" path="res://art/environment/Bow and Arrows.png" id="2_7r0re"]
+[ext_resource type="Texture2D" uid="uid://cso7vmmxv0jvc" path="res://art/Bow and Arrows.png" id="2_kldcf"]
 [ext_resource type="Texture2D" uid="uid://bcx0md4nhxouq" path="res://art/FXpack13/mid/1_0.png" id="3_aru73"]
 [ext_resource type="Texture2D" uid="uid://dju2u0dll661c" path="res://art/FXpack13/Effect1/Effect2/2.png" id="3_l4qx7"]
 [ext_resource type="Texture2D" uid="uid://yv1ydt0rrobf" path="res://art/FXpack13/Effect1/Effect2/3.png" id="4_wukag"]
@@ -131,7 +131,7 @@ radius = 3.0
 height = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jlal"]
-atlas = ExtResource("2_7r0re")
+atlas = ExtResource("2_kldcf")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_72lwx"]

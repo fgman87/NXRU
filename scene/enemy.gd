@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var shots = 0
 var speed = 400 + floor(400 * (global.current_level_num * .4))
 var health = 35 + floor(35 * (global.current_level_num * .1))
 var can_take_damage = true
@@ -18,13 +18,12 @@ func _physics_process(_delta):
 
 func take_damage():
 	var arrow_dam = global.player_arrowDam
-	var shots = global.bow_shots
-	if shots < 3:
+	shots += 1
+	if shots < 3 and global.archery >= 2:
 		arrow_dam = global.player_arrowDam
-		global.bow_shots += 1
-	if shots >= 3: 
-		arrow_dam = global.player_arrowDam + floor(health * 2)
-		global.bow_shots = 0
+	if shots >= 3 and global.archery >= 2: 
+		arrow_dam = global.player_arrowDam + 10
+		shots = 0
 	health -= arrow_dam
 	set_physics_process(false)
 	$AnimatedSprite2D.play("damage")
@@ -40,6 +39,7 @@ func take_damage():
 		global.player_xp += 100 + (100 * (global.current_level_num * .07))
 		global.total_xp += 100 + (100 * (global.current_level_num * .07))
 		global.get_mob_count()
+		global.archery = 2
 		print(global.enemy_count)
 		await get_tree().create_timer(1.2).timeout
 		self.queue_free()

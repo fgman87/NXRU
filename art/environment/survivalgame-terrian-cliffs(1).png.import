@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0uqrctxkjucb"
-path="res://.godot/imported/survivalgame-terrian-cliffs(1).png-51fdbff5547a5758902120ce5d8fadb9.ctex"
+path="res://.godot/imported/survivalgame-terrian-cliffs(1).png-b7ff4afc09566a1901eaefec214e64a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/survivalgame-terrian-cliffs(1).png"
-dest_files=["res://.godot/imported/survivalgame-terrian-cliffs(1).png-51fdbff5547a5758902120ce5d8fadb9.ctex"]
+source_file="res://art/environment/survivalgame-terrian-cliffs(1).png"
+dest_files=["res://.godot/imported/survivalgame-terrian-cliffs(1).png-b7ff4afc09566a1901eaefec214e64a3.ctex"]
 
 [params]
 

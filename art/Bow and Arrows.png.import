@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqq1qi2q8xrgu"
-path="res://.godot/imported/survivalgame-terrian-water(1).png-529719890f22672d07643e24bb8b9cc6.ctex"
+uid="uid://cso7vmmxv0jvc"
+path="res://.godot/imported/Bow and Arrows.png-ed5a96d277a5029a4013516949708eb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/survivalgame-terrian-water(1).png"
-dest_files=["res://.godot/imported/survivalgame-terrian-water(1).png-529719890f22672d07643e24bb8b9cc6.ctex"]
+source_file="res://art/Bow and Arrows.png"
+dest_files=["res://.godot/imported/Bow and Arrows.png-ed5a96d277a5029a4013516949708eb4.ctex"]
 
 [params]
 

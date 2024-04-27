@@ -35,7 +35,7 @@ var bow_shots = 0
 #end of player stuff
 #skill increase
 var fire_lvl = 1
-var archer = 1
+var archery = 1
 var bossdam = 40
 
 func get_mob_count():

@@ -39,7 +39,6 @@ func _on_body_entered(body):
 	if current_attack == "arrow":
 		body.take_damage()
 		queue_free()
-		global.archer += 1
 	if current_attack == "fire2":
 		body.take_fire2_damage()
 		queue_free()
